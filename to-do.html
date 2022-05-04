@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/22ac4aa58d.js" crossorigin="anonymous"></script>
+    <title>task list</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-image: linear-gradient(120deg, orange, yellow) ;
+            color: aliceblue;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+        header{
+            font-size: 1.5rem;
+        }
+        header, form{
+            min-height: 20vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form input, form button{
+            padding: 0.5rem;
+            font-size: 2rem;
+            border: none;
+            background: #fff;
+        }
+        form button{
+            color: #d88771;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        form button:hover{
+            color: #fff;
+            background: #d88771;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My To-do List</h1>
+    </header>
+    <form>
+        <input type="text" class="todo-input">
+        <button class="todo-button" type="submit">
+            <i class="fa-solid fa-plus"></i>
+        </button>
+    </form>
+    <div class="todo-container">
+        <ul class="todo-list"></ul>
+    </div>
+
+
+    <script>
+
+        //Selectors
+        const todoInput = document.querySelector('.todo-input');
+        const todobutton = document.querySelector('.todo-button');
+        const todoList = document.querySelector('.todo-list');
+
+        //Event Listeners
+        todobutton.addEventListener('click', addTodo);
+
+        //Functions
+        function addTodo(e){
+            //prevenir que el form se autoenvie
+            e.preventDefault();
+
+            //todo div
+            const todoDiv = document.createElement("div");
+            todoDiv.classList.add("todo");
+
+            //create li
+            const newTodo = document.createElement("li");
+            newTodo.innerText = todoInput.value;
+            newTodo.classList.add("todo-item");
+            todoDiv.appendChild(newTodo);
+
+            //check mark button
+            const completedButton = document.createElement('button');
+            completedButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
+            completedButton.classList.add('complete-btn');
+            todoDiv.appendChild(completedButton);
+
+            //check trash button
+            const trashButton = document.createElement('button');
+            trashButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
+            trashButton.classList.add('trash-btn');
+            todoDiv.appendChild(trashButton);
+
+            //añadir a la lista
+            todoList.appendChild(todoDiv);
+
+        }
+
+
+    </script>
+</body>
+</html>
